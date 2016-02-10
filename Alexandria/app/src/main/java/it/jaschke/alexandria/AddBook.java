@@ -130,6 +130,31 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         IntentIntegrator.forSupportFragment(this).initiateScan();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            String scanContent = result.getContents();
+            String scanFormat = result.getFormatName();
+            if (scanFormat == "EAN_13") {
+                //Once we have an ISBN, start a book intent
+                Intent bookIntent = new Intent(getActivity(), BookService.class);
+                bookIntent.putExtra(BookService.EAN, scanContent);
+                bookIntent.setAction(BookService.FETCH_BOOK);
+                getActivity().startService(bookIntent);
+                AddBook.this.restartLoader();
+            }else {
+                Toast toast = Toast.makeText(getContext(),"incompatible Barcode format:( ", Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+        } else {
+            Toast toast = Toast.makeText(getContext(),
+                    "No scan data received!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
     private void restartLoader(){
         getLoaderManager().restartLoader(LOADER_ID, null, this);
     }
