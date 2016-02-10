@@ -10,6 +10,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,7 +137,10 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         if(result != null) {
             String scanContent = result.getContents();
             String scanFormat = result.getFormatName();
-            if (scanFormat == "EAN_13") {
+            Log.i(TAG, "book content: " +scanContent);
+            Log.i(TAG, "book format: " + scanFormat);
+            String ean= new String ("EAN_13");
+            if (scanFormat.equals(ean)) {
                 //Once we have an ISBN, start a book intent
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
                 bookIntent.putExtra(BookService.EAN, scanContent);
