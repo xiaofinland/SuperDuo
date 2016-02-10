@@ -36,6 +36,16 @@
                 android:id="@+id/scan_button"/>
 
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/unavailable_text"
+            android:layout_below="@+id/eancontainer"
+            android:textSize="@dimen/head_line"
+            android:layout_marginTop="25dp"
+            android:layout_alignLeft="@+id/eancontainer"
+            android:layout_alignStart="@+id/eancontainer"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -126,4 +136,5 @@
         </LinearLayout>
 
     </RelativeLayout>
+
 </FrameLayout>

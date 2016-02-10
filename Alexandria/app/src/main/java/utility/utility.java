@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 /**
  * Created by xiaoma on 10/02/16.
  */
-public class utility {
+public class Utility {
     /**
           * Returns true if the network is available or about to become available.
           *
