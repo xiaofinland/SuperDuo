@@ -46,9 +46,13 @@ public class scoresAdapter extends CursorAdapter
     {
         final ViewHolder mHolder = (ViewHolder) view.getTag();
         mHolder.home_name.setText(cursor.getString(COL_HOME));
+        mHolder.home_name.setContentDescription(mHolder.home_name.getText());
         mHolder.away_name.setText(cursor.getString(COL_AWAY));
+        mHolder.away_name.setContentDescription(mHolder.away_name.getText());
         mHolder.date.setText(cursor.getString(COL_MATCHTIME));
+        mHolder.date.setContentDescription(mHolder.date.getText());
         mHolder.score.setText(Utilies.getScores(cursor.getInt(COL_HOME_GOALS),cursor.getInt(COL_AWAY_GOALS)));
+        mHolder.score.setContentDescription(mHolder.score.getText());
         mHolder.match_id = cursor.getDouble(COL_ID);
         mHolder.home_crest.setImageResource(Utilies.getTeamCrestByTeamName(
                 cursor.getString(COL_HOME)));
@@ -70,8 +74,10 @@ public class scoresAdapter extends CursorAdapter
             TextView match_day = (TextView) v.findViewById(R.id.matchday_textview);
             match_day.setText(Utilies.getMatchDay(cursor.getInt(COL_MATCHDAY),
                     cursor.getInt(COL_LEAGUE)));
+            match_day.setContentDescription(match_day.getText());
             TextView league = (TextView) v.findViewById(R.id.league_textview);
             league.setText(Utilies.getLeague(cursor.getInt(COL_LEAGUE)));
+            league.setContentDescription(league.getText());
             Button share_button = (Button) v.findViewById(R.id.share_button);
             share_button.setOnClickListener(new View.OnClickListener() {
                 @Override
