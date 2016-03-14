@@ -20,7 +20,7 @@ import barqsoft.footballscores.model.Season;
 /**
  * Created by xiaoma on 14/03/16.
  */
-public class FixtureFragement extends Fragment implements OndataLoad {
+public class FixtureFragment extends Fragment implements OndataLoad {
     private final String SEASONS = "SEASONS";
 
     private ArrayList<Season> mSeasons = new ArrayList<>();

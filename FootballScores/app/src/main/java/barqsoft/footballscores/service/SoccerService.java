@@ -18,6 +18,8 @@ import barqsoft.footballscores.model.FootballSeason;
 import barqsoft.footballscores.model.Match;
 import barqsoft.footballscores.model.Season;
 import barqsoft.footballscores.model.Team;
+import barqsoft.footballscores.utils.Parser;
+import barqsoft.footballscores.utils.RestClient;
 import database.DaoHelper;
 import database.DatabaseContract;
 import database.ScoresDBHelper;
@@ -96,7 +98,7 @@ public class SoccerService extends IntentService {
 
             String result = RestClient.getData(seasonsUrl.toString(), getString(R.string.api_key));
 
-            ArrayList<Season> seasons = SoccerParser.parseSeasonsJSON(result);
+            ArrayList<Season> seasons = Parser.parseSeasonsJSON(result);
 
             for (Season season : seasons) {
 
@@ -141,7 +143,7 @@ public class SoccerService extends IntentService {
             URL fixturesUrl = createFixtureUrl(String.valueOf(season.getId()), timeFrame);
             String result = RestClient.getData(fixturesUrl.toString(), getString(R.string.api_key));
 
-            ArrayList<Match> matches = SoccerParser.parseMatchesJSON(result);
+            ArrayList<Match> matches = Parser.parseMatchesJSON(result);
 
             if (season.getMatches() != null && !season.getMatches().isEmpty()) {
                 season.getMatches().addAll(matches);
