@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/widget_header"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="#bbDEDFDE">
 
         <LinearLayout
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/widget_no_match"
-            android:text="@string/widget_no_match"/>
+            android:text="@string/no_match_for_today"/>
 
     </LinearLayout>
 </FrameLayout>

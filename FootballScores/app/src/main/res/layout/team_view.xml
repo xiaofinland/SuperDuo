@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/team_flag"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/manchester_united"
+        android:layout_margin="20dp"
+        />
+    <TextView
+        android:id="@+id/team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manchester United"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
+
+</LinearLayout>

@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="api_key">93faa0b65e584752a275cf68ddf19568</string>
+
     <string name="app_name">Football Scores</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="test_text">Test</string>
-    <string name="today">Today</string>
+
+
+    <string name="flag_country">Country flag</string>
+
+
+
+    <string name="next_match" translatable="false">Next Match</string>
+
+    <string name="format_yyyy_MM_dd" translatable="false">yyyy-MM-dd</string>
+    <string name="format_EEE_dd_MMM" translatable="false">EEE dd MMM</string>
+
+    <string name="timed" translatable="false">TIMED</string>
+    <string name="on_enabled" translatable="false">Widget Provider enabled. Starting timer to update widget every minute</string>
+    <string name="on_disabled" translatable="false">Widget Provider disabled. Turning off timer</string>
+
+    <!-- These texts should be translate -->
+    <string name="update_teams">"Updating Teams ..."</string>
+
     <string name="yesterday">Yesterday</string>
+    <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
+
+    <string name="internet_is_not_available">Internet is not available</string>
+    <string name="clean_database">The database was clean successfully</string>
+
+    <string name="soccer_app_today">Soccer App - Today</string>
+    <string name="share_league">Send league matches</string>
+    <string name="subject_mail">Matches - %1$s - %2$s</string>
+
+    <!-- Content Descriptions -->
+    <string name="home_team_name">Home Team Name</string>
+    <string name="away_team_name">Away Team Name</string>
+    <string name="home_team_image">Home Team Image</string>
+    <string name="away_team_image">Away Team Image</string>
+
+    <string name="button_share_league">Share League Matches</string>
+
+
     <string name="champions_league">UEFA Champions League</string>
     <string name="bundesliga">Bundesliga</string>
     <string name="premierleague">Premier League</string>
@@ -33,10 +68,9 @@
         During the off season, fake data will be added to the app.
     </string>
     <string name="widget_title">Football App - Today</string>
-    <string name="widget_no_match">There is no match result available for today.</string>
-    <string name="on_enabled">Widget provider enabled. Start timer to update widget</string>
-    <string name="on_disabled">Widget provider disabled. Turn off timer</string>
-    <string name="api_key"></string>
+    <string name="no_match">There is no match result available for the day.</string>
+    <string name="no_match_for_today">There is no match result available for today.</string>
+
     <string name="dummy_data">{\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",\"count\":1,\"fixtures\":[{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}}]}</string>
 
 <!-- Accessibility needed strings -->

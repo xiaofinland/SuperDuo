@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="window_background">#EEEEEE</color>
+
+    <color name="colorPrimary">#0A7E07</color>
+    <color name="colorPrimaryDark">#259B24</color>
+    <color name="colorAccent">#CDDC39</color>
+
     <color name="blue01">#0099CC</color>
     <color name="blue02">#079DD0</color>
     <color name="blue03">#0FA1D3</color>

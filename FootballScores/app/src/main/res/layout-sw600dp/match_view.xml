@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:gravity="center"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/home_team_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Liverpool"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:gravity="end"
+        android:layout_weight="0.23"
+        android:contentDescription="@string/home_team_name"/>
+
+    <ImageView
+        android:id="@+id/home_team_flag"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:gravity="end"
+        android:src="@drawable/no_image"
+        android:layout_weight="0.15"
+        android:contentDescription="@string/home_team_name"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.19">
+
+        <TextView
+            android:id="@+id/match_result"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/match_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:layout_marginTop="3dp"
+            android:layout_gravity="center"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/away_team_flag"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:gravity="start"
+        android:src="@drawable/no_image"
+        android:layout_weight="0.15"
+        android:contentDescription="@string/away_team_image"/>
+
+    <TextView
+        android:id="@+id/away_team_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Chelsea"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:gravity="start"
+        android:layout_weight="0.23"
+        android:contentDescription="@string/away_team_name"/>
+
+</LinearLayout>
