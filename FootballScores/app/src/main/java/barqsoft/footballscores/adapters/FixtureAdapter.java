@@ -13,6 +13,7 @@ import android.view.ViewTreeObserver;
 import java.util.ArrayList;
 
 import barqsoft.footballscores.FixtureView;
+import barqsoft.footballscores.R;
 import barqsoft.footballscores.model.Season;
 
 /**

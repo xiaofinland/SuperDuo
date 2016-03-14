@@ -15,6 +15,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import barqsoft.footballscores.adapters.FixtureAdapter;
+import barqsoft.footballscores.api.FixtureManager;
 import barqsoft.footballscores.model.Season;
 
 /**

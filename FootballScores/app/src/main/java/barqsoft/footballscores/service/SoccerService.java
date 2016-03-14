@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import barqsoft.footballscores.R;
 import barqsoft.footballscores.model.FootballSeason;
 import barqsoft.footballscores.model.Match;
 import barqsoft.footballscores.model.Season;

@@ -8,6 +8,8 @@ import android.os.Build;
 import java.util.HashMap;
 import java.util.Map;
 
+import barqsoft.footballscores.R;
+
 /**
  * Created by xiaoma on 15/03/16.
  */

@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import barqsoft.footballscores.R;
 import barqsoft.footballscores.model.Team;
 import barqsoft.footballscores.utils.Parser;
 import barqsoft.footballscores.utils.RestClient;

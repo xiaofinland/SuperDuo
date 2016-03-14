@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -34,8 +35,16 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import barqsoft.footballscores.api.DatabaseProvider;
+import barqsoft.footballscores.api.FixtureManager;
+import barqsoft.footballscores.model.Season;
+import barqsoft.footballscores.service.SoccerService;
+import barqsoft.footballscores.service.TeamService;
+import database.DaoHelper;
+
 public class MainActivity extends ActionBarActivity
 {
+    private static final String LOG_TAG =MainActivity.class.getSimpleName();
     private static final String RECEIVER = "RECEIVER";
 
     private ProgressDialog mProgressDialog;
