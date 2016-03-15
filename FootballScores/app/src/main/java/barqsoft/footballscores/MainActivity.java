@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-       
+
         //Setup view pager
         ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(mViewPager, getDatesYYYYMMDD());
