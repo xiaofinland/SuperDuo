@@ -17,12 +17,13 @@ import java.util.Iterator;
 
 import barqsoft.footballscores.adapters.FixtureAdapter;
 import barqsoft.footballscores.api.FixtureManager;
+import barqsoft.footballscores.api.OnDataLoad;
 import barqsoft.footballscores.model.Season;
 
 /**
  * Created by xiaoma on 14/03/16.
  */
-public class FixtureFragment extends Fragment implements OndataLoad {
+public class FixtureFragment extends Fragment implements OnDataLoad {
     private final String SEASONS = "SEASONS";
 
     private ArrayList<Season> mSeasons = new ArrayList<>();

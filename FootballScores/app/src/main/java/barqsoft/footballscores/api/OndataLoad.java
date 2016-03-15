@@ -7,7 +7,7 @@ import barqsoft.footballscores.model.Season;
 /**
  * Created by xiaoma on 15/03/16.
  */
-public class OnDataLoad {
+public interface OnDataLoad {
     /**
      * The data was successfully retrieved.
      * @param mSeasons

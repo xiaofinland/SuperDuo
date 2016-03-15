@@ -36,5 +36,4 @@ public class DatabaseProvider implements Provider, Serializable{
 
         mOnDataReady.onDataReady(soccerSeason);
     }
-
 }

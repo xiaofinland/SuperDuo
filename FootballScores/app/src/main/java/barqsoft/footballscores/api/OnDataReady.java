@@ -5,7 +5,7 @@ import barqsoft.footballscores.model.FootballSeason;
 /**
  * Created by xiaoma on 15/03/16.
  */
-public class OnDataReady {
+public interface OnDataReady {
 
     /**
      * When data is ready, the listener will implement this interface to process the data.

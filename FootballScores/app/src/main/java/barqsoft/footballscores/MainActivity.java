@@ -18,6 +18,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseArray;
@@ -27,7 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.security.Provider;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,19 +37,20 @@ import java.util.Locale;
 
 import barqsoft.footballscores.api.DatabaseProvider;
 import barqsoft.footballscores.api.FixtureManager;
+
 import barqsoft.footballscores.model.Season;
 import barqsoft.footballscores.service.SoccerService;
 import barqsoft.footballscores.service.TeamService;
 import database.DaoHelper;
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends AppCompatActivity
 {
     private static final String LOG_TAG =MainActivity.class.getSimpleName();
     private static final String RECEIVER = "RECEIVER";
 
     private ProgressDialog mProgressDialog;
     private FixtureManager mFixtureManager;
-    private Provider mProvider;
+    private barqsoft.footballscores.api.Provider mProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +76,7 @@ public class MainActivity extends ActionBarActivity
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-        if (savedInstanceState == null) {
-            my_main = new PagerFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, my_main)
-                    .commit();
-        }
+       
         //Setup view pager
         ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(mViewPager, getDatesYYYYMMDD());

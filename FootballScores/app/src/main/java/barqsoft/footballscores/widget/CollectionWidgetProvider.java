@@ -19,41 +19,41 @@ import barqsoft.footballscores.R;
  */
 public class CollectionWidgetProvider extends AppWidgetProvider {
     private static final int PERIOD = 60000;
-    public static String WIDGET_UPDATE = "com.barqsoft.widget.WIDGET_UPDATE";
+    public static String MATCHES_WIDGET_UPDATE = "com.barqsoft.footballscores.widget.MATCHES_WIDGET_UPDATE";
 
     @Override
-    public void onUpdate (Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        for (int widgetId :  appWidgetIds) {
+    public void onUpdate (Context context, AppWidgetManager appWidgetManager, int appWidgetIds[]) {
+        for (int appWidgetId  :  appWidgetIds) {
 
             //Get the layout for the App Widget
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_layout);
 
             // Set up the intent that starts WidgetService, which will provide
             //the views for this collection
-            final Intent intent = new Intent(context, WidgetService.class);
+            final Intent widgetServiceIntent = new Intent(context, WidgetService.class);
             //Add the app widget Id to the intent extras
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds);
-            intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+            widgetServiceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            widgetServiceIntent.setData(Uri.parse(widgetServiceIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
             //Set up the RemoteViews object to use a RemoteViews adapter,
             //This adapter connects to a RemoteViewsService through the specific intent
             //This is how to populate data.
-            views.setRemoteAdapter(R.id.widget_list, intent);
+            views.setRemoteAdapter(R.id.widget_list, widgetServiceIntent);
 
             //The empty view is displayed when the collection doesn't have any item
             views.setEmptyView(R.id.widget_list, R.id.widget_no_match);
 
             // go back to MainActivity
             Intent templateIntent = new Intent(context,MainActivity.class);
-            templateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds);
-            templateIntent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+            templateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            templateIntent.setData(Uri.parse(widgetServiceIntent.toUri(Intent.URI_INTENT_SCHEME)));
             PendingIntent templatePendingIntent = PendingIntent.getActivity(context,0,templateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             views.setPendingIntentTemplate(R.id.widget_list, templatePendingIntent);
 
             views.setOnClickPendingIntent(R.id.widget_header, getLaunchIntent(context));
 
-            appWidgetManager.updateAppWidget(appWidgetIds, views);
+            appWidgetManager.updateAppWidget(appWidgetId, views);
         }
         super.onUpdate(context,appWidgetManager,appWidgetIds);
     }
@@ -73,9 +73,9 @@ public class CollectionWidgetProvider extends AppWidgetProvider {
     }
 
     private PendingIntent createClockTickIntent (Context context){
-        Intent intent = new Intent(WIDGET_UPDATE);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        return pendingIntent;
+        Intent intent = new Intent(MATCHES_WIDGET_UPDATE);
+        PendingIntent pendingIntentTick = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        return pendingIntentTick;
 
         }
 
@@ -90,7 +90,7 @@ public class CollectionWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive (Context context, Intent intent){
         super.onReceive(context,intent);
-        if (WIDGET_UPDATE.equals(intent.getAction())){
+        if (MATCHES_WIDGET_UPDATE.equals(intent.getAction())){
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int [] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
 

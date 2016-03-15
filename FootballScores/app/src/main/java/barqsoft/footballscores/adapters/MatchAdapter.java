@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import barqsoft.footballscores.R;
 import barqsoft.footballscores.model.Match;
 
 /**
