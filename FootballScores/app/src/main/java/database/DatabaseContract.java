@@ -33,7 +33,6 @@ public class DatabaseContract{
         public static final String AWAY_TEAM_ID = "away_tam_id";
         public static final String HOME_GOALS = "home_goals";
         public static final String AWAY_GOALS = "away_goals";
-        public static final String MATCH_ID = "match_id";
         public static final String STATUS = "status";
 
         public static Uri buildMatchUri(long id) {
