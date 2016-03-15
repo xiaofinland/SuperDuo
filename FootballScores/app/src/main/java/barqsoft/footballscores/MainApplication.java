@@ -12,9 +12,11 @@ import barqsoft.footballscores.api.Provider;
  * Created by xiaoma on 14/03/16.
  */
 public class MainApplication extends Application {
+
+    private static MainApplication sInstance;
+
     private FixtureManager mFixtureManager;
     private Provider mProvider;
-    private static MainApplication sInstance;
 
     @Override
     public void onCreate() {

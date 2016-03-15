@@ -34,6 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import barqsoft.footballscores.api.DatabaseProvider;
 import barqsoft.footballscores.api.FixtureManager;
@@ -52,6 +53,52 @@ public class MainActivity extends AppCompatActivity
     private ProgressDialog mProgressDialog;
     private FixtureManager mFixtureManager;
     private Provider mProvider;
+
+    private class MessageReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (intent.getAction().equals(TeamService.NOTIFICATION_GET_TEAMS)) {
+                mProgressDialog.hide();
+            }
+
+            if (intent.getAction().equals(TeamService.NOTIFICATION_SPINNER_STATUS)) {
+                String status = intent.getStringExtra(TeamService.SPINNER_STATUS);
+
+                if (status.equals(TeamService.SPINNER_NOT_ACTIVE)) {
+                    mProgressDialog.hide();
+
+                    ArrayList<Season> seasons = mFixtureManager.getSeasons();
+                    if (seasons != null && seasons.isEmpty()) {
+                        fetchFixtures();
+                    }
+                }
+            }
+
+            if (intent.getAction().equals(SoccerService.NOTIFICATION_CLEAN_DATABASE)) {
+                String msg = intent.getStringExtra(SoccerService.PARAM_CLEAN_DATABASE);
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                startServiceTeam();
+            }
+        }
+    }
+
+
+    private class DownReceiver extends ResultReceiver {
+
+        public DownReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == TeamService.NEW_PROGRESS) {
+                int progress = resultData.getInt(TeamService.PROGRESS);
+                mProgressDialog.setProgress(progress);
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +120,7 @@ public class MainActivity extends AppCompatActivity
 
         //Prepares tabs
         String[] datesTitle = getTitlesForTabBar();
+        Log.i(LOG_TAG, "date title  "+datesTitle);
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -151,58 +199,6 @@ public class MainActivity extends AppCompatActivity
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-        super.onRestoreInstanceState(savedInstanceState);
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        MessageReceiver messageReceiver = new MessageReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(TeamService.NOTIFICATION_GET_TEAMS);
-        filter.addAction(TeamService.NOTIFICATION_SPINNER_STATUS);
-        filter.addAction(SoccerService.NOTIFICATION_CLEAN_DATABASE);
-        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, filter);
-    }
-
-    private void startServiceTeam() {
-        Intent intent = new Intent(this, TeamService.class);
-        intent.setAction(TeamService.ACTION_GET_TEAMS);
-        intent.putExtra(RECEIVER, new DownReceiver(new Handler()));
-        startService(intent);
-    }
-    private class MessageReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            if (intent.getAction().equals(TeamService.NOTIFICATION_GET_TEAMS)) {
-                mProgressDialog.hide();
-            }
-
-            if (intent.getAction().equals(TeamService.NOTIFICATION_SPINNER_STATUS)) {
-                String status = intent.getStringExtra(TeamService.SPINNER_STATUS);
-
-                if (status.equals(TeamService.SPINNER_NOT_ACTIVE)) {
-                    mProgressDialog.hide();
-
-                    ArrayList<Season> seasons = mFixtureManager.getSeasons();
-                    if (seasons != null && seasons.isEmpty()) {
-                        fetchFixtures();
-                    }
-                }
-            }
-
-            if (intent.getAction().equals(SoccerService.NOTIFICATION_CLEAN_DATABASE)) {
-                String msg = intent.getStringExtra(SoccerService.PARAM_CLEAN_DATABASE);
-                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                startServiceTeam();
-            }
-        }
-    }
-
     private void fetchFixtures() {
         //asks for fixtures
         ArrayList<Season> seasons = mFixtureManager.getSeasons();
@@ -223,6 +219,30 @@ public class MainActivity extends AppCompatActivity
 
         viewPager.setAdapter(adapter);
     }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+    private void startServiceTeam() {
+        Intent intent = new Intent(this, TeamService.class);
+        intent.setAction(TeamService.ACTION_GET_TEAMS);
+        intent.putExtra(RECEIVER, new DownReceiver(new Handler()));
+        startService(intent);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        MessageReceiver messageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(TeamService.NOTIFICATION_GET_TEAMS);
+        filter.addAction(TeamService.NOTIFICATION_SPINNER_STATUS);
+        filter.addAction(SoccerService.NOTIFICATION_CLEAN_DATABASE);
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, filter);
+    }
+
 
     private String[] getTitlesForTabBar() {
 
@@ -300,21 +320,7 @@ public class MainActivity extends AppCompatActivity
 
         return dates;
     }
-    private class DownReceiver extends ResultReceiver {
 
-        public DownReceiver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onReceiveResult(int resultCode, Bundle resultData) {
-            super.onReceiveResult(resultCode, resultData);
-            if (resultCode == TeamService.NEW_PROGRESS) {
-                int progress = resultData.getInt(TeamService.PROGRESS);
-                mProgressDialog.setProgress(progress);
-            }
-        }
-    }
 
     private class SectionsPagerAdapter extends PagerAdapter {
 
