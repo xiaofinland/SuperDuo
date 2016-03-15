@@ -17,7 +17,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -37,6 +37,7 @@ import java.util.Locale;
 
 import barqsoft.footballscores.api.DatabaseProvider;
 import barqsoft.footballscores.api.FixtureManager;
+import barqsoft.footballscores.api.Provider;
 
 import barqsoft.footballscores.model.Season;
 import barqsoft.footballscores.service.SoccerService;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity
 
     private ProgressDialog mProgressDialog;
     private FixtureManager mFixtureManager;
-    private barqsoft.footballscores.api.Provider mProvider;
+    private Provider mProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

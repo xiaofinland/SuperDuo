@@ -2,10 +2,9 @@ package barqsoft.footballscores;
 
 import android.app.Application;
 
-import java.security.Provider;
-
 import barqsoft.footballscores.api.FixtureManager;
 import barqsoft.footballscores.api.ProviderFactory;
+import barqsoft.footballscores.api.Provider;
 
 
 
@@ -14,7 +13,7 @@ import barqsoft.footballscores.api.ProviderFactory;
  */
 public class MainApplication extends Application {
     private FixtureManager mFixtureManager;
-    private barqsoft.footballscores.api.Provider mProvider;
+    private Provider mProvider;
     private static MainApplication sInstance;
 
     @Override
@@ -35,7 +34,7 @@ public class MainApplication extends Application {
         return mFixtureManager;
     }
 
-    public barqsoft.footballscores.api.Provider getProvider() {
+    public Provider getProvider() {
         return mProvider;
     }
 }
