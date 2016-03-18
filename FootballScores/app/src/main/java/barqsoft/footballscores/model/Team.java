@@ -7,16 +7,16 @@ import android.os.Parcelable;
  * Created by xiaoma on 14/03/16.
  */
 public class Team implements Parcelable{
-    private Integer id;
+    private int id;
     private String name;
     private String thumbnail;
     private String shortName;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

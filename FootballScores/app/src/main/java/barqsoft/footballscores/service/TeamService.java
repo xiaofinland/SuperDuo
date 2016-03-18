@@ -22,6 +22,8 @@ import barqsoft.footballscores.utils.Parser;
 import barqsoft.footballscores.utils.RestClient;
 import database.DaoHelper;
 import database.DatabaseContract;
+import database.DatabaseContract.TeamEntry;
+
 
 /**
  * Created by xiaoma on 14/03/16.
@@ -52,6 +54,7 @@ public class TeamService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.i(LOG_TAG,"reach onHandleIntent");
         if (null != intent) {
             final String action = intent.getAction();
             if (ACTION_GET_TEAMS.equals(action)) {
@@ -62,6 +65,7 @@ public class TeamService extends IntentService {
             }
         }
     }
+
     /**
      * Gets the teams provided by the service and persist them.
      *
@@ -69,7 +73,7 @@ public class TeamService extends IntentService {
      *                 data about download progress of teams.
      */
     private void getAllTeamsAndPersistThem(ResultReceiver receiver) {
-
+        Log.d(LOG_TAG, "Reached getAllTeamsAndPersistThem");
         DaoHelper daoHelper = new DaoHelper(this);
 
         if (daoHelper.getTeamCount() == 226) {

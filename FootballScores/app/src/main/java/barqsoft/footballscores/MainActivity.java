@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.ResultReceiver;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -44,6 +46,7 @@ import barqsoft.footballscores.model.Season;
 import barqsoft.footballscores.service.SoccerService;
 import barqsoft.footballscores.service.TeamService;
 import database.DaoHelper;
+import database.DatabaseContract;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -57,7 +60,8 @@ public class MainActivity extends AppCompatActivity
     private class MessageReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-
+            Log.i(LOG_TAG," reach onReceive");
+            Log.i(LOG_TAG, "receive action: "+ intent.getAction());
             if (intent.getAction().equals(TeamService.NOTIFICATION_GET_TEAMS)) {
                 mProgressDialog.hide();
             }
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity
 
         //Check if all teams are downloaded
         startServiceTeam();
+        Log.d(LOG_TAG, "Reached startServiceTeam");
 
         //gets Fixture Manager
         mFixtureManager = ((MainApplication) getApplication()).getFixtureManager();
@@ -157,6 +162,8 @@ public class MainActivity extends AppCompatActivity
         mProgressDialog.setMax(50);
 
         DaoHelper daoHelper = new DaoHelper(this);
+        Log.d(LOG_TAG, "Reached DaoHelper");
+        Log.d(LOG_TAG, "DaoHelper LastItemId is: "+daoHelper.getLastItemId());
 
         if (daoHelper.getLastItemId() == 0) {
             mProgressDialog.show();
@@ -230,6 +237,7 @@ public class MainActivity extends AppCompatActivity
         intent.setAction(TeamService.ACTION_GET_TEAMS);
         intent.putExtra(RECEIVER, new DownReceiver(new Handler()));
         startService(intent);
+        Log.d(LOG_TAG, "startServiceTeam initiates Service");
     }
     @Override
     protected void onResume() {

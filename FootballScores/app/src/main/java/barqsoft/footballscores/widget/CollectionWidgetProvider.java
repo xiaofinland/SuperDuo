@@ -41,7 +41,7 @@ public class CollectionWidgetProvider extends AppWidgetProvider {
             views.setRemoteAdapter(R.id.widget_list, widgetServiceIntent);
 
             //The empty view is displayed when the collection doesn't have any item
-            views.setEmptyView(R.id.widget_list, R.id.widget_no_match);
+            //views.setEmptyView(R.id.widget_list, R.id.widget_no_match);
 
             // go back to MainActivity
             Intent templateIntent = new Intent(context,MainActivity.class);

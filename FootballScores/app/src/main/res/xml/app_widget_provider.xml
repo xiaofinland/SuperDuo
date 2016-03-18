@@ -5,7 +5,7 @@
     android:minHeight="110dp"
     android:minResizeHeight="300dp"
     android:minResizeWidth="300dp"
-    android:updatePeriodMillis="1800000"
+    android:updatePeriodMillis="0"
     android:previewImage="@drawable/ic_launcher"
     android:initialLayout="@layout/appwidget_layout"
 

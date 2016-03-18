@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -30,6 +31,8 @@ public class WidgetService extends RemoteViewsService {
 }
 
 class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory {
+
+    private static final String LOG_TAG= WidgetViewsFactory.class.getSimpleName();
 
     private final Context mContext;
     private final int mAppWidgetId;
@@ -71,6 +74,7 @@ class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         Match match = mMatches.get(position);
 
         RemoteViews mView;
+        Log.i(LOG_TAG, "match status: " + match.getStatus());
 
         if (!match.getStatus().equals(mContext.getString(R.string.timed))) {
             mView = new RemoteViews(mContext.getPackageName(), R.layout.match_view_finished);

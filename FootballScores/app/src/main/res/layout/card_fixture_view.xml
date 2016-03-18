@@ -9,7 +9,7 @@
     android:elevation="10dp"
     card_view:cardCornerRadius="3dp">
 
-    <com.barqsoft.footballscores.FixtureView
+    <barqsoft.footballscores.FixtureView
         android:id="@+id/list_of_matches"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

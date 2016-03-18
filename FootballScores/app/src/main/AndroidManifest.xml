@@ -26,29 +26,30 @@
 
         <activity
             android:name=".AboutActivity"
-            android:label="About"
+            android:label="@string/about"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="barqsoft.footballscores.MainActivity" />
         </activity>
         <service
-            android:name="service.SoccerService"
+            android:name="barqsoft.footballscores.service.SoccerService"
             android:exported="false"/>
 
         <service
-            android:name="service.TeamService"
+            android:name="barqsoft.footballscores.service.TeamService"
             android:exported="false"/>
 
         <provider
             android:name="database.ScoresProvider"
-            android:authorities="com.barqsoft.footballscores"
+            android:authorities="barqsoft.footballscores"
             android:exported="false" />
 
 
         <!-- Widget Receiver-->
-        <receiver android:name=".widget.CollectionWidgetProvider"
-            android:icon="@drawable/ic_launcher">
+        <receiver android:name="barqsoft.footballscores.widget.CollectionWidgetProvider"
+            android:icon="@drawable/ic_launcher"
+            android:label="Football Score Widget">
 
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -60,7 +61,7 @@
 
         <!-- Widget Service -->
         <service
-            android:name="widget.WidgetService"
+            android:name="barqsoft.footballscores.widget.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS"
             android:exported="false"/>
 
