@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="api_key">93faa0b65e584752a275cf68ddf19568</string>
+    <string name="api_key">5af4554eb16b49b785fddb667fcdc7d2</string>
 
     <string name="app_name">Football Scores</string>
     <string name="action_settings">Settings</string>
@@ -20,7 +20,7 @@
     <string name="on_enabled" translatable="false">Widget Provider enabled. Starting timer to update widget every minute</string>
     <string name="on_disabled" translatable="false">Widget Provider disabled. Turning off timer</string>
 
-    <!-- These texts should be translate -->
+
     <string name="update_teams">"Updating Teams ..."</string>
 
     <string name="yesterday">Yesterday</string>
@@ -58,12 +58,12 @@
     <string name="about">About</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="about_text">
-        This Application get Football Matches Score for the Premier League,Seria A,Bundesliga,Primera Division
+        This Application gets Football Matches Score for the Premier League,Seria A,Bundesliga,Primera Division
         and the Uefa Champions League.
         All Matches data are acquired from football-data.org free API.
         All team Logos are acquired from http://hdlogo.wordpress.com/ upon requesting permission form the owner.
         The original version of this app was created by Yahia Khalid Ibn El Walid Ahmed.
-        Xiao Ma has added some functionalities, such as widget, accessibility, etc.
+        Xiao Ma has Rewritten most of the original code and added additional functionalities, such as widget, accessibility, etc.
 
         During the off season, fake data will be added to the app.
     </string>
