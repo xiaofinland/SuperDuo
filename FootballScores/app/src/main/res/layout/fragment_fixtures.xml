@@ -16,11 +16,12 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <TextView
+    <ImageView
         android:id="@+id/no_match_for_today"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@string/no_match"
-        android:visibility="gone" />
+        android:src="@drawable/no_match_for_this_day"
+        android:visibility="gone"
+      />
 
 </RelativeLayout>

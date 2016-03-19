@@ -5,10 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import barqsoft.footballscores.model.Season;
  */
 public class FixtureFragment extends Fragment implements OnDataLoad {
     private final String SEASONS = "SEASONS";
+    private static final String LOG_TAG = FixtureFragment.class.getSimpleName();
 
     private ArrayList<Season> mSeasons = new ArrayList<>();
     private FixtureAdapter mFixtureAdapter;
@@ -33,7 +36,7 @@ public class FixtureFragment extends Fragment implements OnDataLoad {
     private LinearLayoutManager mLayoutManager;
     private FixtureManager mFixtureManager;
     private String date;
-    private TextView mNoMatchText;
+    private ImageView mNoMatchImage;
 
     @Nullable
     @Override
@@ -42,7 +45,7 @@ public class FixtureFragment extends Fragment implements OnDataLoad {
         // Inflate the layout for this fragment
         final View containerView = inflater.inflate(R.layout.fragment_fixtures, container, false);
 
-        mNoMatchText = (TextView) containerView.findViewById(R.id.no_match_for_today);
+        mNoMatchImage = (ImageView) containerView.findViewById(R.id.no_match_for_today);
 
         mProgressBar = (ProgressBar) containerView.findViewById(R.id.progress_bar_fixtures);
 
@@ -92,9 +95,14 @@ public class FixtureFragment extends Fragment implements OnDataLoad {
     public void onDataLoadedSuccess(ArrayList<Season> seasons) {
         this.mSeasons = seasons;
         filterSeasons(mSeasons);
+        Log.i(LOG_TAG, "reached onDataLoadedSuccess");
+        Log.i(LOG_TAG, "season page empty? " + mSeasons.isEmpty());
+        Log.i(LOG_TAG, "no match textView visibility before  is: " + mNoMatchImage.isShown());
 
         if(mSeasons.isEmpty()) {
-            mNoMatchText.setVisibility(View.VISIBLE);
+            mNoMatchImage.setVisibility(View.VISIBLE);
+
+            Log.i(LOG_TAG, "no match textView visibility after is: " + mNoMatchImage.isShown());
         }
         mFixtureAdapter.setSeasons(mSeasons);
     }
