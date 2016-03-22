@@ -29,7 +29,7 @@
         android:gravity="end"
         android:src="@drawable/no_image"
         android:layout_weight="0.15"
-        android:contentDescription="@string/home_team_name"/>
+        android:contentDescription="@string/home_team_logo"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -67,7 +67,7 @@
         android:gravity="start"
         android:src="@drawable/no_image"
         android:layout_weight="0.15"
-        android:contentDescription="@string/away_team_image"/>
+        android:contentDescription="@string/away_team_logo"/>
 
     <TextView
         android:id="@+id/away_team_name"

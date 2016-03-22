@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/no_match_for_this_day"
+        android:contentDescription="@string/no_match"
         android:visibility="gone"
       />
 

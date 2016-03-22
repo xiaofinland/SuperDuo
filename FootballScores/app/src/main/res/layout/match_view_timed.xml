@@ -28,7 +28,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:layout_weight="0.14"
-        android:contentDescription="@string/home_team_image"
+        android:contentDescription="@string/home_team_logo"
         android:gravity="end"
         android:src="@drawable/no_image" />
 
@@ -57,7 +57,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:layout_weight="0.14"
-        android:contentDescription="@string/away_team_image"
+        android:contentDescription="@string/away_team_logo"
         android:gravity="start"
         android:src="@drawable/no_image" />
 
