@@ -32,6 +32,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
+    private static final String LOG_TAG = AddBook.class.getSimpleName();
     private EditText ean;
     private final int LOADER_ID = 1;
     private View rootView;
@@ -41,6 +42,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     private String mScanFormat = "Format:";
     private String mScanContents = "Contents:";
+
+    private String eanString;
 
 
 
@@ -61,6 +64,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView = inflater.inflate(R.layout.fragment_add_book, container, false);
         ean = (EditText) rootView.findViewById(R.id.ean);
 
+
+
         ean.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,15 +79,25 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             @Override
             public void afterTextChanged(Editable s) {
-                String ean =s.toString();
+                //String ean =s.toString();
+                eanString = s.toString();
+                Log.i(LOG_TAG, "input EAN String is: "+eanString);
                 //catch isbn10 numbers
-                if(ean.length()==10 && !ean.startsWith("978")){
+                if (eanString.length()==10 && !eanString.startsWith("978")){
+                    eanString="978"+eanString;
+                }
+                if (eanString.length()<13){
+                    clearFields();
+                    return;
+                }
+                /*if(ean.length()==10 && !ean.startsWith("978")){
                     ean="978"+ean;
                 }
                 if(ean.length()<13){
                     clearFields();
                     return;
                 }
+                */
                 TextView tv = (TextView) getView().findViewById(R.id.unavailable_text);
                 if (!Utility.isNetworkAvailable(getActivity())) {
                     int message = R.string.unavailable_booklist_no_network;
@@ -90,10 +105,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 } else {
                     //Once we have an ISBN, start a book intent
                     Intent bookIntent = new Intent(getActivity(), BookService.class);
-                    bookIntent.putExtra(BookService.EAN, ean);
+                    //bookIntent.putExtra(BookService.EAN, ean);
+                    bookIntent.putExtra(BookService.EAN, eanString);
                     bookIntent.setAction(BookService.FETCH_BOOK);
                     getActivity().startService(bookIntent);
                     AddBook.this.restartLoader();
+                    Log.i(LOG_TAG, "input reached restartLoader");
                 }
             }
         });
@@ -103,6 +120,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             public void onClick(View v) {
                 if (v.getId()==R.id.scan_button) {
                     scan();
+                    Log.i(LOG_TAG, "scan button clicked");
                 }
 
             }
@@ -119,7 +137,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             @Override
             public void onClick(View view) {
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
-                bookIntent.putExtra(BookService.EAN, ean.getText().toString());
+                bookIntent.putExtra(BookService.EAN, eanString);
                 bookIntent.setAction(BookService.DELETE_BOOK);
                 getActivity().startService(bookIntent);
                 ean.setText("");
@@ -136,6 +154,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     public void scan() {
         IntentIntegrator.forSupportFragment(this).initiateScan();
+        Log.i(LOG_TAG, "scan method invoked");
     }
 
     @Override
@@ -150,8 +169,19 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             String scanFormat = result.getFormatName();
             Log.i(TAG, "book content: " +scanContent);
             Log.i(TAG, "book format: " + scanFormat);
+            eanString= scanContent;
+            Log.i(TAG, "scan EAN string is: " +eanString);
+            Intent bookIntent = new Intent(getActivity(), BookService.class);
+            bookIntent.putExtra(BookService.EAN, eanString);
+            bookIntent.setAction(BookService.FETCH_BOOK);
+            getActivity().startService(bookIntent);
+            Log.i(LOG_TAG, "Scan start bookIntent");
+            AddBook.this.restartLoader();
+            Log.i(LOG_TAG, "scan reached restartLoader");
+            /*
             String ean= new String ("EAN_13");
             if (scanFormat.equals(ean)) {
+                Log.i(LOG_TAG,"Compare string result: "+scanFormat.equals(ean));
                 //Once we have an ISBN, start a book intent
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
                 bookIntent.putExtra(BookService.EAN, scanContent);
@@ -161,7 +191,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             }else {
                 Toast toast = Toast.makeText(getContext(),"incompatible Barcode format:( ", Toast.LENGTH_LONG);
                 toast.show();
-            }
+
+            }*/
 
         } else {
             Toast toast = Toast.makeText(getContext(),
@@ -172,10 +203,21 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     private void restartLoader(){
         getLoaderManager().restartLoader(LOADER_ID, null, this);
+        Log.i(LOG_TAG, "restartLoader executed");
     }
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.i(LOG_TAG, "reach onCreateLoader");
+        Log.i(LOG_TAG,"onCreateLoader ean length is: "+eanString.length());
+        Log.i(LOG_TAG, "oncreateLoader ean value is: "+eanString);
+        if (eanString.length()==0){
+            return null;
+        }
+        if (eanString.length()==10 && !eanString.startsWith("978")){
+            eanString="978"+eanString;
+        }
+       /*
         if(ean.getText().length()==0){
             return null;
         }
@@ -183,9 +225,11 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         if(eanStr.length()==10 && !eanStr.startsWith("978")){
             eanStr="978"+eanStr;
         }
+        */
+        Log.i(LOG_TAG, "cursor ean string is: "+eanString);
         return new CursorLoader(
                 getActivity(),
-                AlexandriaContract.BookEntry.buildFullBookUri(Long.parseLong(eanStr)),
+                AlexandriaContract.BookEntry.buildFullBookUri(Long.parseLong(eanString)),
                 null,
                 null,
                 null,
@@ -195,6 +239,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     @Override
     public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
+        Log.i(LOG_TAG,"reach onLoadFinished");
         if (!data.moveToFirst()) {
             return;
         }
