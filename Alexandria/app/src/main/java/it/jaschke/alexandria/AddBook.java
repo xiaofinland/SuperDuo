@@ -79,7 +79,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             @Override
             public void afterTextChanged(Editable s) {
-                //String ean =s.toString();
+
                 eanString = s.toString();
                 Log.i(LOG_TAG, "input EAN String is: "+eanString);
                 //catch isbn10 numbers
@@ -98,7 +98,6 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 } else {
                     //Once we have an ISBN, start a book intent
                     Intent bookIntent = new Intent(getActivity(), BookService.class);
-                    //bookIntent.putExtra(BookService.EAN, ean);
                     bookIntent.putExtra(BookService.EAN, eanString);
                     bookIntent.setAction(BookService.FETCH_BOOK);
                     getActivity().startService(bookIntent);
@@ -111,7 +110,14 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView.findViewById(R.id.scan_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.getId()==R.id.scan_button) {
+                TextView tvScan = (TextView) getView().findViewById(R.id.unavailable_text);
+                if (!Utility.isNetworkAvailable(getActivity())) {
+                    Log.i(LOG_TAG,"network status: "+Utility.isNetworkAvailable(getActivity()));
+                    int message = R.string.unavailable_booklist_no_network;
+                    tvScan.setText(message);
+                    Log.i(LOG_TAG, "unavailable text status: " + tvScan.isShown());
+
+                }else if (v.getId()==R.id.scan_button) {
                     scan();
                     Log.i(LOG_TAG, "scan button clicked");
                 }
@@ -155,16 +161,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         Log.i(LOG_TAG,"reached onActivityResult");
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         Log.i(LOG_TAG, "scan result is "+result);
-        TextView tvScan = (TextView) rootView.findViewById(R.id.unavailable_text);
-        if (!Utility.isNetworkAvailable(getActivity())) {
-            Log.i(LOG_TAG,"network status: "+Utility.isNetworkAvailable(getActivity()));
-            int message = R.string.unavailable_booklist_no_network;
-            Log.i(LOG_TAG,"unavailable message "+message);
 
-                tvScan.setText(message);
-
-            Log.i(LOG_TAG, "unavailable text status: " + tvScan.isShown());
-        }else if(result != null) {
+        if (result != null){
             String scanContent = result.getContents();
             String scanFormat = result.getFormatName();
             Log.i(TAG, "book content: " +scanContent);
