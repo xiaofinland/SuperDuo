@@ -155,18 +155,15 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         Log.i(LOG_TAG,"reached onActivityResult");
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         Log.i(LOG_TAG, "scan result is "+result);
-        TextView tv = (TextView) getView().findViewById(R.id.unavailable_text);
+        TextView tvScan = (TextView) rootView.findViewById(R.id.unavailable_text);
         if (!Utility.isNetworkAvailable(getActivity())) {
             Log.i(LOG_TAG,"network status: "+Utility.isNetworkAvailable(getActivity()));
             int message = R.string.unavailable_booklist_no_network;
             Log.i(LOG_TAG,"unavailable message "+message);
-            try {
-                tv.setText(message);
-            }catch (Exception e){
-                Log.i (LOG_TAG, " unavailable  message is not handled");
-            }
-            //tv.setVisibility(View.VISIBLE);
-            Log.i(LOG_TAG, "unavailable text status: "+tv.isShown());
+
+                tvScan.setText(message);
+
+            Log.i(LOG_TAG, "unavailable text status: " + tvScan.isShown());
         }else if(result != null) {
             String scanContent = result.getContents();
             String scanFormat = result.getFormatName();
