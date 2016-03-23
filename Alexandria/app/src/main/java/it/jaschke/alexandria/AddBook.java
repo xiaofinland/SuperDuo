@@ -90,14 +90,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                     clearFields();
                     return;
                 }
-                /*if(ean.length()==10 && !ean.startsWith("978")){
-                    ean="978"+ean;
-                }
-                if(ean.length()<13){
-                    clearFields();
-                    return;
-                }
-                */
+
                 TextView tv = (TextView) getView().findViewById(R.id.unavailable_text);
                 if (!Utility.isNetworkAvailable(getActivity())) {
                     int message = R.string.unavailable_booklist_no_network;
@@ -159,11 +152,21 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(LOG_TAG,"reached onActivityResult");
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        Log.i(LOG_TAG, "scan result is "+result);
         TextView tv = (TextView) getView().findViewById(R.id.unavailable_text);
         if (!Utility.isNetworkAvailable(getActivity())) {
+            Log.i(LOG_TAG,"network status: "+Utility.isNetworkAvailable(getActivity()));
             int message = R.string.unavailable_booklist_no_network;
-            tv.setText(message);
+            Log.i(LOG_TAG,"unavailable message "+message);
+            try {
+                tv.setText(message);
+            }catch (Exception e){
+                Log.i (LOG_TAG, " unavailable  message is not handled");
+            }
+            //tv.setVisibility(View.VISIBLE);
+            Log.i(LOG_TAG, "unavailable text status: "+tv.isShown());
         }else if(result != null) {
             String scanContent = result.getContents();
             String scanFormat = result.getFormatName();
@@ -171,28 +174,22 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             Log.i(TAG, "book format: " + scanFormat);
             eanString= scanContent;
             Log.i(TAG, "scan EAN string is: " +eanString);
-            Intent bookIntent = new Intent(getActivity(), BookService.class);
-            bookIntent.putExtra(BookService.EAN, eanString);
-            bookIntent.setAction(BookService.FETCH_BOOK);
-            getActivity().startService(bookIntent);
-            Log.i(LOG_TAG, "Scan start bookIntent");
-            AddBook.this.restartLoader();
-            Log.i(LOG_TAG, "scan reached restartLoader");
-            /*
-            String ean= new String ("EAN_13");
+            String ean = new String ("EAN_13");
             if (scanFormat.equals(ean)) {
-                Log.i(LOG_TAG,"Compare string result: "+scanFormat.equals(ean));
+                Log.i(LOG_TAG, "Compare string result: " + scanFormat.equals(ean));
                 //Once we have an ISBN, start a book intent
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
-                bookIntent.putExtra(BookService.EAN, scanContent);
+                bookIntent.putExtra(BookService.EAN, eanString);
                 bookIntent.setAction(BookService.FETCH_BOOK);
                 getActivity().startService(bookIntent);
+                Log.i(LOG_TAG, "Scan start bookIntent");
                 AddBook.this.restartLoader();
-            }else {
+                Log.i(LOG_TAG, "scan reached restartLoader");
+            }else{
                 Toast toast = Toast.makeText(getContext(),"incompatible Barcode format:( ", Toast.LENGTH_LONG);
                 toast.show();
+            }
 
-            }*/
 
         } else {
             Toast toast = Toast.makeText(getContext(),
@@ -217,15 +214,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         if (eanString.length()==10 && !eanString.startsWith("978")){
             eanString="978"+eanString;
         }
-       /*
-        if(ean.getText().length()==0){
-            return null;
-        }
-        String eanStr= ean.getText().toString();
-        if(eanStr.length()==10 && !eanStr.startsWith("978")){
-            eanStr="978"+eanStr;
-        }
-        */
+
         Log.i(LOG_TAG, "cursor ean string is: "+eanString);
         return new CursorLoader(
                 getActivity(),
