@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/widget_margin">
+    android:layout_margin="@dimen/widget_margin_main">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,39 +17,39 @@
             android:id="@+id/widgetLayoutMain"
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingEnd="5dp">
+            android:paddingStart="@dimen/match_view_margin_small"
+            android:paddingLeft="@dimen/match_view_margin_small"
+            android:paddingRight="@dimen/match_view_margin_small"
+            android:paddingEnd="@dimen/match_view_margin_small">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/widget_launch_icon"
+                android:layout_height="@dimen/widget_launch_icon"
                 android:id="@+id/widgetLauncher"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="@dimen/widget_margin_large"
+                android:layout_marginLeft="@dimen/widget_margin_large"
+                android:layout_marginBottom="@dimen/widget_margin_main"
+                android:layout_marginTop="@dimen/widget_margin_main"
                 android:src="@drawable/ic_launcher"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="@dimen/widget_margin_large"
+                android:layout_marginRight="@dimen/widget_margin_large"
                 android:gravity="center"
                 android:text="@string/widget_title"
-                android:textColor="#4B4B4D"
-                android:textSize="18sp"
+                android:textColor="@color/widget_text_color"
+                android:textSize="@dimen/widget_title_text_size"
                 android:textStyle="bold"/>
 
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#aaa"/>
+            android:layout_height="@dimen/widget_margin_line"
+            android:background="@color/widget_spliter_color"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

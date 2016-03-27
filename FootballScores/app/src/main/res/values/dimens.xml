@@ -3,9 +3,32 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="list_horizonal_matgin">2dp</dimen>
-    <dimen name="share_button_margin">150dp</dimen>
+    <dimen name="share_button_width">20dp</dimen>
+    <dimen name="share_button_height">25dp</dimen>
+    <dimen name="about_text_size">20sp</dimen>
     <dimen name="TeamNames">17sp</dimen>
     <dimen name="Score">30sp</dimen>
-    <dimen name="League">15sp</dimen>
-    <dimen name="widget_margin">10dp</dimen>
+    <dimen name="League_text_size">16sp</dimen>
+
+    
+    <dimen name="match_view_height">50dp</dimen>
+    <dimen name="match_view_margin_main">10dp</dimen>
+    <dimen name="match_view_margin_large">12dp</dimen>
+    <dimen name="match_view_margin_xlarge">20dp</dimen>
+    <dimen name="match_view_margin_small">5dp</dimen>
+    <dimen name="match_view_margin_xsmall">3dp</dimen>
+    <dimen name="match_team_name_text_size">12sp</dimen>
+    <dimen name="match_result_text_size">16sp</dimen>
+    <dimen name="match_time_text_size">13sp</dimen>
+    <dimen name="match_team_flag_height">40dp</dimen>
+
+    <dimen name="widget_margin_large">20dp</dimen>
+    <dimen name="widget_margin_main">10dp</dimen>
+    <dimen name="widget_margin_line">1dp</dimen>
+    <dimen name="widget_launch_icon">40dp</dimen>
+    <dimen name="widget_title_text_size">18sp</dimen>
+
+    <dimen name="result_view_height">60dp</dimen>
+
+    <dimen name="team_view_height_width">80dp</dimen>
 </resources>

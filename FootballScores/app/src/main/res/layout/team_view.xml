@@ -6,17 +6,17 @@
 
     <ImageView
         android:id="@+id/team_flag"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/team_view_height_width"
+        android:layout_height="@dimen/team_view_height_width"
         android:src="@drawable/manchester_united"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/match_view_margin_xlarge"
         />
     <TextView
         android:id="@+id/team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Manchester United"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginStart="@dimen/match_view_margin_main"
+        android:layout_marginLeft="@dimen/match_view_margin_main"/>
 
 </LinearLayout>

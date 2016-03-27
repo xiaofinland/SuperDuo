@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="@dimen/match_view_height"
     android:gravity="center"
-    android:layout_margin="10dp">
+    android:layout_margin="@dimen/match_view_margin_main">
 
     <TextView
         android:id="@+id/home_team_name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:text="Liverpool"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="18sp"
+        android:layout_marginTop="@dimen/match_view_margin_large"
+        android:layout_marginStart="@dimen/match_view_margin_main"
+        android:layout_marginLeft="@dimen/match_view_margin_main"
+        android:textSize="@dimen/match_team_name_text_size"
         android:layout_gravity="center"
         android:gravity="end"
         android:layout_weight="0.23"
@@ -22,9 +22,9 @@
     <ImageView
         android:id="@+id/home_team_flag"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_height="@dimen/match_team_flag_height"
+        android:layout_marginTop="@dimen/match_view_margin_small"
+        android:layout_marginBottom="@dimen/match_view_margin_small"
         android:layout_gravity="center"
         android:gravity="end"
         android:src="@drawable/no_image"
@@ -41,17 +41,17 @@
             android:id="@+id/match_result"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/match_view_margin_large"
             android:layout_gravity="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/match_result_text_size"
             android:visibility="visible"/>
 
         <TextView
             android:id="@+id/match_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="16sp"
-            android:layout_marginTop="3dp"
+            android:textSize="@dimen/match_time_text_size"
+            android:layout_marginTop="@dimen/match_view_margin_xsmall"
             android:layout_gravity="center"
             android:visibility="visible"/>
 
@@ -60,9 +60,9 @@
     <ImageView
         android:id="@+id/away_team_flag"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_height="@dimen/match_team_flag_height"
+        android:layout_marginTop="@dimen/match_view_margin_small"
+        android:layout_marginBottom="@dimen/match_view_margin_small"
         android:layout_gravity="center"
         android:gravity="start"
         android:src="@drawable/no_image"
@@ -74,10 +74,10 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:text="Chelsea"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="20sp"
+        android:layout_marginTop="@dimen/match_view_margin_large"
+        android:layout_marginStart="@dimen/match_view_margin_main"
+        android:layout_marginLeft="@dimen/match_view_margin_main"
+        android:textSize="@dimen/match_team_name_text_size"
         android:layout_gravity="center"
         android:gravity="start"
         android:layout_weight="0.23"

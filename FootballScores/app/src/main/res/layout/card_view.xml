@@ -13,12 +13,12 @@
 
         <ImageView
             android:id="@+id/country_flag"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="@dimen/match_view_height"
+            android:layout_height="@dimen/match_view_height"
+            android:layout_marginBottom="@dimen/match_view_margin_small"
+            android:layout_marginStart="@dimen/match_view_margin_xlarge"
+            android:layout_marginLeft="@dimen/match_view_margin_xlarge"
+            android:layout_marginTop="@dimen/match_view_margin_small"
             android:layout_weight="2"
             android:contentDescription="@string/flag_country"
             android:src="@drawable/ic_premier_league" />
@@ -28,19 +28,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="@dimen/match_view_margin_main"
+            android:layout_marginTop="@dimen/match_view_margin_large"
             android:layout_weight="2.2"
             android:text="England - Premier League"
-            android:textSize="16sp" />
+            android:textSize="@dimen/League_text_size" />
 
         <Button
             android:id="@+id/button_share_league"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
+            android:layout_width="@dimen/share_button_width"
+            android:layout_height="@dimen/share_button_height"
             android:layout_gravity="center"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="@dimen/match_view_margin_main"
+            android:layout_marginRight="@dimen/match_view_margin_main"
             android:layout_weight="0.3"
             android:background="@drawable/ic_share"
             android:contentDescription="@string/button_share_league" />
@@ -49,11 +49,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="@dimen/widget_margin_line"
+        android:layout_marginLeft="@dimen/match_view_margin_xlarge"
+        android:layout_marginStart="@dimen/match_view_margin_xlarge"
+        android:layout_marginRight="@dimen/match_view_margin_xlarge"
+        android:layout_marginEnd="@dimen/match_view_margin_xlarge"
         android:background="@android:color/darker_gray" />
 
     <ListView

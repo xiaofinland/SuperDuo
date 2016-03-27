@@ -7,6 +7,9 @@
     <color name="colorPrimaryDark">#259B24</color>
     <color name="colorAccent">#CDDC39</color>
 
+    <color name="widget_text_color">#4B4B4D</color>
+    <color name="widget_spliter_color">#aaa</color>
+
     <color name="blue01">#0099CC</color>
     <color name="blue02">#079DD0</color>
     <color name="blue03">#0FA1D3</color>
